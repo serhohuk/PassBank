@@ -2,7 +2,7 @@
     <string name="app_name">PassBank</string>
     <string name="enter_passbank_password">Enter PassBank Password</string>
     <string name="it_s_first_start_please_enter_password_for_next_sessions">It\'s first start. Please enter 6-symbols password for next sessions</string>
-    
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="credit_cards">Credit Cards</string>
     <string name="passwords">Passwords</string>
