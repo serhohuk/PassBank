@@ -5,10 +5,12 @@ import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
 import org.bson.types.ObjectId
 
-data class PasswordEntity(
+open class PasswordEntity constructor(
     @PrimaryKey
     var id : Int = ObjectId().timestamp,
-    var name : String? = null,
     @Required
-    var key : String
+    var name : String ="",
+    var login : String? = null,
+    @Required
+    var key : String =""
 ) : RealmObject()

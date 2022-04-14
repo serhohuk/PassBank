@@ -7,5 +7,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface SavedPasswordRepository {
 
-    fun savePassword(entity : PasswordEntity) : Flow<Result<PasswordData>>
+    suspend fun savePassword(entity : PasswordEntity)
+
+    suspend fun getAllPasswords() : Flow<Result<List<PasswordData>>>
+
+    suspend fun getByKey(key : String) : Flow<Result<PasswordData>>
 }

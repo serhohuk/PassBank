@@ -14,7 +14,7 @@ class MyBankApplication : Application() {
         super.onCreate()
         Realm.init(this)
         startKoin {
-            androidLogger(level = Level.DEBUG)
+            androidLogger(level = Level.ERROR)
             androidContext(this@MyBankApplication)
             modules(listOf(dbModule))
         }

@@ -1,13 +1,48 @@
 package com.serhohuk.passbank.data.repositoriesimpl
 
+import com.serhohuk.passbank.data.mappers.PasswordMapper
 import com.serhohuk.passbank.data.models.PasswordData
 import com.serhohuk.passbank.domain.models.PasswordEntity
 import com.serhohuk.passbank.domain.repositories.SavedPasswordRepository
 import com.serhohuk.passbank.domain.utils.Result
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import io.realm.kotlin.executeTransactionAwait
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import org.koin.java.KoinJavaComponent.inject
 
 class SavedPasswordRepositoryImpl : SavedPasswordRepository {
-    override fun savePassword(entity: PasswordEntity): Flow<Result<PasswordData>> {
+
+    private val config by inject<RealmConfiguration>(RealmConfiguration::class.java)
+
+    override suspend fun savePassword(entity: PasswordEntity) {
+        val realm = Realm.getInstance(config)
+
+        realm.executeTransactionAwait(Dispatchers.IO) { transaction->
+            transaction.insert(entity)
+        }
+    }
+
+    override suspend fun getAllPasswords(): Flow<Result<List<PasswordData>>> {
+        val realm = Realm.getInstance(config)
+        val passwordsList = mutableListOf<PasswordData>()
+
+        realm.executeTransactionAwait(Dispatchers.IO){ transaction->
+            passwordsList.addAll(
+                transaction
+                    .where(PasswordEntity::class.java)
+                    .findAll()
+                    .map {
+                        PasswordMapper().toPasswordData(it)
+                    }
+            )
+        }
+        return flowOf(Result.Success(passwordsList))
+    }
+
+    override suspend fun getByKey(key: String): Flow<Result<PasswordData>> {
         TODO("Not yet implemented")
     }
 }
