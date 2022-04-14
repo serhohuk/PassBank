@@ -1,4 +1,4 @@
-package com.serhohuk.passbank.activity
+package com.serhohuk.passbank.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,6 @@ import com.serhohuk.passbank.databinding.ActivityPincodeSetupBinding
 import com.serhohuk.passbank.utils.KeyboardUtils
 import com.serhohuk.passbank.utils.SecureStorage
 import com.serhohuk.passbank.utils.TextChangedWatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 

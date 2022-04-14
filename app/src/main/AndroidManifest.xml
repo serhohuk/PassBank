@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PassBank">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.serhohuk.passbank.presentation.activity.MainActivity"
             android:exported="false" />
-        <activity android:name=".activity.PinCodeSetupActivity"
+        <activity android:name="com.serhohuk.passbank.presentation.activity.PinCodeSetupActivity"
             android:exported="false"/>
         <activity
-            android:name=".activity.StartActivity"
+            android:name="com.serhohuk.passbank.presentation.activity.StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

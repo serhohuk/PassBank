@@ -1,4 +1,4 @@
-package com.serhohuk.passbank.adapters
+package com.serhohuk.passbank.presentation.adapters
 
 import android.app.KeyguardManager
 import android.content.Context

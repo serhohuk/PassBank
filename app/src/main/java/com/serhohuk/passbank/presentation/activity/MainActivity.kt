@@ -1,4 +1,4 @@
-package com.serhohuk.passbank.activity
+package com.serhohuk.passbank.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

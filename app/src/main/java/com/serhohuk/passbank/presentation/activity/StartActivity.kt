@@ -1,4 +1,4 @@
-package com.serhohuk.passbank.activity
+package com.serhohuk.passbank.presentation.activity
 
 import android.app.KeyguardManager
 import android.content.Context
@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.serhohuk.passbank.adapters.NumPadAdapter
+import com.serhohuk.passbank.presentation.adapters.NumPadAdapter
 import com.serhohuk.passbank.databinding.ActivityStartBinding
 import com.serhohuk.passbank.utils.SecureStorage
 import com.serhohuk.passbank.utils.TextChangedWatcher
