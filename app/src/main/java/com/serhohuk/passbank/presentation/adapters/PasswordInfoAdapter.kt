@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.serhohuk.passbank.R
 import com.serhohuk.passbank.data.models.PasswordData
+import com.serhohuk.passbank.presentation.viewmodels.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PasswordInfoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -19,6 +21,11 @@ class PasswordInfoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(item: PasswordData){
             serviceName.text = item.name
+            itemView.setOnClickListener {
+                adapterListener?.let {
+                    it(item)
+                }
+            }
         }
     }
 
@@ -45,4 +52,10 @@ class PasswordInfoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     val items = AsyncListDiffer(this,differCallback)
+
+    fun setAdapterClickListener(listener : (PasswordData)->Unit){
+        adapterListener = listener
+    }
+
+    private var adapterListener : ((PasswordData)->Unit)? = null
 }

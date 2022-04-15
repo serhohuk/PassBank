@@ -13,10 +13,22 @@
         <action
             android:id="@+id/action_homefragment_to_savePasswordFragment"
             app:destination="@id/savePasswordFragment" />
+        <action
+            android:id="@+id/action_homefragment_to_passwordFragment"
+            app:destination="@id/passwordFragment" />
     </fragment>
     <fragment
         android:id="@+id/savePasswordFragment"
         android:name="com.serhohuk.passbank.presentation.fragments.SavePasswordFragment"
         android:label="fragment_save_password"
         tools:layout="@layout/fragment_save_password" />
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.serhohuk.passbank.presentation.fragments.PasswordFragment"
+        android:label="fragment_password"
+        tools:layout="@layout/fragment_password" >
+        <argument
+            android:name="passData"
+            app:argType="com.serhohuk.passbank.data.models.PasswordData" />
+    </fragment>
 </navigation>

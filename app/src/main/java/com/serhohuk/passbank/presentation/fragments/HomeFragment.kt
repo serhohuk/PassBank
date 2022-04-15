@@ -26,6 +26,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel : MainViewModel by viewModel()
+    private lateinit var adapter : PasswordInfoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +39,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRecyclerView()
+
         binding.fbAdd.setOnClickListener {
             findNavController().navigate(R.id.action_homefragment_to_savePasswordFragment)
         }
-        val adapter = PasswordInfoAdapter()
-        binding.rvPasswords.adapter = adapter
-        binding.rvPasswords.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
         lifecycleScope.launchWhenStarted {
             viewModel.execute().collectLatest {
@@ -56,6 +56,16 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun initRecyclerView(){
+        adapter = PasswordInfoAdapter()
+        binding.rvPasswords.adapter = adapter
+        binding.rvPasswords.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        adapter.setAdapterClickListener {
+            val action = HomeFragmentDirections.actionHomefragmentToPasswordFragment(it)
+            findNavController().navigate(action)
         }
     }
 
