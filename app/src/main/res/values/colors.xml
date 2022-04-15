@@ -11,6 +11,11 @@
 
     <color name="light_gray">#BFB5B5</color>
     <color name="red_alert">#FF0000</color>
+    <color name="orange">#EE4E34</color>
+    <color name="peach">#FCEDDA</color>
+    <color name="scarlet">#B85042</color>
+    <color name="light_olive">#E7E8D1</color>
+    <color name="light_teal">#8ABF99</color>
 
 
 </resources>

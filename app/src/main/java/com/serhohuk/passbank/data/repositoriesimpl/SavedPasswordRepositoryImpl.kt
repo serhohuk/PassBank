@@ -9,8 +9,7 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.kotlin.executeTransactionAwait
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.*
 import org.koin.java.KoinJavaComponent.inject
 
 class SavedPasswordRepositoryImpl : SavedPasswordRepository {
@@ -25,9 +24,10 @@ class SavedPasswordRepositoryImpl : SavedPasswordRepository {
         }
     }
 
-    override suspend fun getAllPasswords(): Flow<Result<List<PasswordData>>> {
+    override suspend fun getAllPasswords(): StateFlow<List<PasswordData>> {
         val realm = Realm.getInstance(config)
         val passwordsList = mutableListOf<PasswordData>()
+        val stateFlow = MutableStateFlow(listOf<PasswordData>())
 
         realm.executeTransactionAwait(Dispatchers.IO){ transaction->
             passwordsList.addAll(
@@ -39,7 +39,8 @@ class SavedPasswordRepositoryImpl : SavedPasswordRepository {
                     }
             )
         }
-        return flowOf(Result.Success(passwordsList))
+        stateFlow.value = passwordsList
+        return stateFlow.asStateFlow()
     }
 
     override suspend fun getByKey(key: String): Flow<Result<PasswordData>> {

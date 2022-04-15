@@ -8,9 +8,9 @@ import com.serhohuk.passbank.domain.utils.Result
 import kotlinx.coroutines.flow.Flow
 import org.koin.java.KoinJavaComponent.inject
 
-class PasswordSaveUseCase {
+class PasswordSaveUseCase(private val savedPasswordRepository : SavedPasswordRepository) {
 
-    private val savedPasswordRepository by inject<SavedPasswordRepository>(SavedPasswordRepository::class.java)
+    //private val savedPasswordRepository by inject<SavedPasswordRepository>(SavedPasswordRepository::class.java)
 
     suspend fun execute(passwordEntity: PasswordEntity) {
         savedPasswordRepository.savePassword(passwordEntity)

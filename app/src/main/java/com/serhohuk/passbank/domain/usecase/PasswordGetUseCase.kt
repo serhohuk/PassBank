@@ -4,14 +4,15 @@ import com.serhohuk.passbank.data.models.PasswordData
 import com.serhohuk.passbank.domain.repositories.SavedPasswordRepository
 import com.serhohuk.passbank.domain.utils.Result
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import org.koin.java.KoinJavaComponent
+import org.koin.java.KoinJavaComponent.inject
 
-class PasswordGetUseCase {
+class PasswordGetUseCase(private val savedPasswordRepository :SavedPasswordRepository) {
 
-    private val savedPasswordRepository by KoinJavaComponent.inject<SavedPasswordRepository>(SavedPasswordRepository::class.java
-    )
+    //private val savedPasswordRepository by inject<SavedPasswordRepository>(SavedPasswordRepository::class.java)
 
-    suspend fun executeAll(): Flow<Result<List<PasswordData>>> {
+    suspend fun executeAll(): StateFlow<List<PasswordData>> {
         return savedPasswordRepository.getAllPasswords()
     }
 

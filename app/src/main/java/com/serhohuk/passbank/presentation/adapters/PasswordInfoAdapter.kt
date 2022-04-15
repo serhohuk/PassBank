@@ -44,5 +44,5 @@ class PasswordInfoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    private val items = AsyncListDiffer(this,differCallback)
+    val items = AsyncListDiffer(this,differCallback)
 }

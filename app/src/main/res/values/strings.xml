@@ -6,4 +6,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="credit_cards">Credit Cards</string>
     <string name="passwords">Passwords</string>
+    <string name="site_service_name">Site/Service name</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="save">Save</string>
 </resources>
